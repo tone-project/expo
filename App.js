@@ -6,6 +6,9 @@ import deviceStatus from './src/store/deviceStatus';
 
 import Navigator from './src/navigation';
 
+import { Provider } from "mobx-react";
+import store from './src/store';
+
 
 const App = () => {
   const [fontsLoaded] = useFonts({
@@ -18,7 +21,9 @@ const App = () => {
 
   if(!fontsLoaded){
     return (
-      <AppLoading />
+      <Provider store={store}>
+        <AppLoading />
+      </Provider>
     )
   } else{
     return (

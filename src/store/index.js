@@ -1,7 +1,9 @@
 import deviceStatus from "./deviceStatus";
-import userStatus from "./userStatus";
+import userStore from "./userStore";
+import notificationsModel from "./notificationsStore";
 
 export default {
     deviceStatus: deviceStatus,
-    userStatus: userStatus,
+    userStore: userStore,
+    notificationsStore: notificationsModel,
 }

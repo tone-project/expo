@@ -3,7 +3,6 @@ import {StyleSheet, View, Text, TouchableHighlight } from "react-native";
 
 import Icons from "../icons";
 
-//OPTIONS.map((item, index) => {
 const Option = ({onPressItem, item}) => {
     return(
         <TouchableHighlight  
@@ -27,7 +26,6 @@ export default Option;
 const styles=StyleSheet.create({
     option: {
         alignItems: 'center',
-        // justifyContent: 'center',
         width: 296,
         height: 48,
         flexDirection: 'row',
@@ -41,7 +39,6 @@ const styles=StyleSheet.create({
     },
     text: {
       fontFamily: 'Inter_400Regular',
-    //   color: '#FFFFFF',
         color: '#000000',
         fontSize: 15,
         lineHeight: 20,

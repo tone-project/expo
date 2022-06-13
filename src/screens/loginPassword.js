@@ -6,18 +6,13 @@ import Logo from '../svg/logo';
 import Heading from '../components/heading';
 import Input from '../components/input';
 import CustomButton from '../components/customButton';
-import auth from '../components/firebase';
-import userStatus from '../store/userStatus';
+import userStatus from '../store/userStore';
 
-const LoginPassword = ({navigation}) => {
-
-    console.log('userStatus.email',userStatus.email)
-
+const LoginPassword = ({navigation, route}) => {
+    const {email, name, secondName} = route.params;
     const[password, changePassword]=useState('')
-
     const handleSingUp = () =>{
-        auth
-        .createUserWithEmailAndPassword(userStatus.email, password)
+        userStatus.register(email, password)
         .then(() => navigation.getParent().dispatch(
             CommonActions.reset({
                 index: 0,
@@ -28,7 +23,6 @@ const LoginPassword = ({navigation}) => {
         ))
         .catch(error => console.log(error.message))
     }
-
 
     return(
         <View style={styles.container}>

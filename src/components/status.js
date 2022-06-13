@@ -8,10 +8,6 @@ import deviceStatus from "../store/deviceStatus";
 
 import {observer} from 'mobx-react'
 
-// const ONLINE = false;
-// const CAPACITY = 99;
-// const SIGNAL = 1;
-
 const Status = observer(() => {
     return(
         <View style={styles.statusbar}>

@@ -3,11 +3,9 @@ import {StyleSheet, View, Text, TouchableHighlight, TouchableOpacity, Modal} fro
 import ModalPiker from '../components/modalPiker'
 import DropDown from "../svg/icons/dropDown";
 
-import notificationsModel from '../store/notificationsModel';
+import notificationsModel from '../store/notificationsStore';
 import moment from 'moment';
-// import Constants from 'expo-constants';
-// import * as Notifications from 'expo-notifications';
-// import * as Permissions from 'expo-notifications';
+
 
 const NotificationsTest = () => {
 
@@ -22,76 +20,76 @@ const NotificationsTest = () => {
 
 
 
-    // Notifications.setNotificationHandler({
-    //     handleNotification: async () => ({
-    //       shouldShowAlert: true,
-    //       shouldPlaySound: false,
-    //       shouldSetBadge: false,
-    //     }),
-    //   });
+    Notifications.setNotificationHandler({
+        handleNotification: async () => ({
+          shouldShowAlert: true,
+          shouldPlaySound: false,
+          shouldSetBadge: false,
+        }),
+      });
 
-    //   const sendMesaage = (token) => {
-    //     fetch('https://exp.host/--/api/v2/push/send', {
-    //       method: 'POST',
-    //       headers: {
-    //         Accept: 'application/json',
-    //         'Accept-encoding': 'gzip, deflate',
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: JSON.stringify({
-    //         to: token,
-    //         title: 'betomoedano',
-    //         body: 'suscribete para mas contenido como este',
-    //         data: { data: 'goes here' },
-    //         _displayInForeground: true,
-    //       }),
-    //     });
-    //   }
+      // const sendMesaage = (token) => {
+      //   fetch('https://exp.host/--/api/v2/push/send', {
+      //     method: 'POST',
+      //     headers: {
+      //       Accept: 'application/json',
+      //       'Accept-encoding': 'gzip, deflate',
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify({
+      //       to: token,
+      //       title: 'betomoedano',
+      //       body: 'suscribete para mas contenido como este',
+      //       data: { data: 'goes here' },
+      //       _displayInForeground: true,
+      //     }),
+      //   });
+      // }
 
-    //   async function registerForPushNotificationsAsync() {
-    //     let token;
-    //     if (Constants.isDevice) {
-    //       const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    //       let finalStatus = existingStatus;
-    //       if (existingStatus !== 'granted') {
-    //         const { status } = await Notifications.requestPermissionsAsync();
-    //         finalStatus = status;
-    //       }
-    //       if (finalStatus !== 'granted') {
-    //         alert('Failed to get push token for push notification!');
-    //         return;
-    //       }
-    //       token = (await Notifications.getExpoPushTokenAsync()).data;
-    //       console.log(token);
-    //     } else {
-    //       alert('Must use physical device for Push Notifications');
-    //     }
+      // async function registerForPushNotificationsAsync() {
+      //   let token;
+      //   if (Constants.isDevice) {
+      //     const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      //     let finalStatus = existingStatus;
+      //     if (existingStatus !== 'granted') {
+      //       const { status } = await Notifications.requestPermissionsAsync();
+      //       finalStatus = status;
+      //     }
+      //     if (finalStatus !== 'granted') {
+      //       alert('Failed to get push token for push notification!');
+      //       return;
+      //     }
+      //     token = (await Notifications.getExpoPushTokenAsync()).data;
+      //     console.log(token);
+      //   } else {
+      //     alert('Must use physical device for Push Notifications');
+      //   }
       
-    //     if (Platform.OS === 'android') {
-    //       Notifications.setNotificationChannelAsync('default', {
-    //         name: 'default',
-    //         importance: Notifications.AndroidImportance.MAX,
-    //         vibrationPattern: [0, 250, 250, 250],
-    //         lightColor: '#FF231F7C',
-    //       });
-    //     }
-    //     return token;
-    //   }
+      //   if (Platform.OS === 'android') {
+      //     Notifications.setNotificationChannelAsync('default', {
+      //       name: 'default',
+      //       importance: Notifications.AndroidImportance.MAX,
+      //       vibrationPattern: [0, 250, 250, 250],
+      //       lightColor: '#FF231F7C',
+      //     });
+      //   }
+      //   return token;
+      // }
         
-    //   useEffect(() => {
-    //     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
-    //     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-    //       setNotification(notification);
-    //     });
-    //     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-    //       console.log(response);
-    //     });
+      // useEffect(() => {
+      //   registerForPushNotificationsA  sync().then(token => setExpoPushToken(token));
+      //   notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+      //     setNotification(notification);
+      //   });
+      //   responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      //     console.log(response);
+      //   });
       
-    //     return () => {
-    //       Notifications.removeNotificationSubscription(notificationListener.current);
-    //       Notifications.removeNotificationSubscription(responseListener.current);
-    //     };
-    //   }, []);
+      //   return () => {
+      //     Notifications.removeNotificationSubscription(notificationListener.current);
+      //     Notifications.removeNotificationSubscription(responseListener.current);
+      //   };
+      // }, []);
 
 
     const handleButton =  () => {
@@ -138,7 +136,6 @@ const NotificationsTest = () => {
                     />
                 </Modal>
             </View>
-            
             <View style={styles.buttons}>
                 <TouchableOpacity 
                         style={styles.button}

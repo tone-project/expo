@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, Image} from 'react-native'
 
-
 import Logo from '../svg/logo';
 import Heading from '../components/heading';
 import Input from '../components/input';
 import CustomButton from '../components/customButton';
 import CustomText from '../components/customText';
-import userStatus from '../store/userStatus';
+import userStore from '../store/userStore';
 
 const emailCheck = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/
 
@@ -15,10 +14,10 @@ const LoginRegistrations = ({navigation}) => {
     const[email, changeEmail]=useState('')
     const[beingChecked, setBeingChecked]=useState(false)
     const handleRegistration = () => {
-        console.log('handleRegistration')
         if(emailCheck.exec(email)){
-            userStatus.setEmail(email)
-            navigation.navigate('LoginName')
+            navigation.navigate('LoginName', {
+                email: email,
+            })
         }else {
             setBeingChecked(true);
         }

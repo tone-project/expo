@@ -61,7 +61,6 @@ const styles=StyleSheet.create({
         lineHeight: 20,
     },   
     modal: {
-        // backgroundColor: '#313533',
         backgroundColor: '#fff8dc',
         width: WIDTH-32,
         height: HEIGHT / 1.3,

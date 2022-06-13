@@ -7,8 +7,10 @@ import Heading from '../components/heading';
 import Input from '../components/input';
 import CustomButton from '../components/customButton';
 import CustomText from '../components/customText';
-import auth from '../components/firebase';
-import userStatus from '../store/userStatus';
+
+import userStore from '../store/userStore';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
 const emailCheck = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/
 
 const LoginSingIn = ({navigation}) => {
@@ -16,20 +18,20 @@ const LoginSingIn = ({navigation}) => {
     const[password, changePassword]=useState('');
 
     const handleLogin = () =>{
-        auth
-        .signInWithEmailAndPassword(email, password)
-        .then((userCredentials) => {
-            userStatus.setEmail(email)
-            navigation.getParent().dispatch(
-                CommonActions.reset({
-                    index: 0,
-                    routes: [
-                        {name: 'NavBar'},
-                    ],
-                })
-            )
-        })
-        .catch(error => console.log(error.message))
+        userStore.signIn(email, password)
+        // signInWithEmailAndPassword(email, password)
+            .then(() => {
+                console.log('auth: ', userStore.auth)
+                navigation.getParent().dispatch(
+                    CommonActions.reset({
+                        index: 0,
+                        routes: [
+                            {name: 'NavBar'},
+                        ],
+                    })
+                )
+            })
+            .catch(error => console.log(error.message))
     }
 
     return(

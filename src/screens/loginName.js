@@ -10,17 +10,18 @@ import CustomText from '../components/customText';
 
 const emailCheck = /^((([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я\.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/
 
-import userStatus from '../store/userStatus';
+import userStore from '../store/userStore';
 
-const LoginName = ({navigation}) => {
-
+const LoginName = ({navigation, route}) => {
     const[name, changeName]=useState('')
     const[secondName, changeSecondName]=useState('')
 
     const handleRegister = () => {
-        userStatus.setName(name);
-        userStatus.setSecondName(secondName)
-        navigation.navigate('LoginPassword')
+        navigation.navigate('LoginPassword', {
+            email: route.params.email,
+            name: name,
+            secondName: secondName,
+        })
     }
 
     return(
@@ -32,7 +33,7 @@ const LoginName = ({navigation}) => {
                 <Heading>Вітаємо!</Heading>
             </View>
             <View style={styles.textWrapper}>
-                <CustomText>Створіть акаунт для {userStatus.email}</CustomText>
+                <CustomText>Створіть акаунт для {userStore.email}</CustomText>
             </View>
             <View style={styles.input}>
                 <Input

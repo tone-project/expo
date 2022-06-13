@@ -16,8 +16,6 @@ const Input = ({
     const [focused, setFocused] = useState(false)
 
     const changeText = (text) => {
-        // console.log('beingChecked: ', beingChecked);
-        // console.log('checkValue: ', checkValue);
         onChangeValue(text);
         if(beingChecked){
             if(checkValue.exec(value)){
@@ -29,9 +27,6 @@ const Input = ({
             setError(false)
         }
     }
-
-    useEffect(() => console.log('input render'), []);
-    useEffect(() => console.log('input beingChecked'), [beingChecked]);
 
     return(
         <View style={styles.TextInputContainer}>

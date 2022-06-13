@@ -5,7 +5,7 @@ import moment from 'moment'
 
 import Heading from '../components/heading'
 import Status from '../components/status'
-import notificationsModel from '../store/notificationsModel'
+import notificationsModel from '../store/notificationsStore'
 import Notification from '../components/notification'
 
 import NotificationsTest from '../test/notivicationsTest'
@@ -13,9 +13,8 @@ import metrix from '../../assets/metrix'
 
 import Getnotifications from '../test/getNotifications'
 
-
-
 const Notifications = observer(() => {
+    // {notificationsModel.}
     return(
         <View style={styles.container}>
             <Status/>
@@ -45,13 +44,9 @@ export default Notifications;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: '#1A1A1A',
         alignItems: 'center',
-        // justifyContent: 'center',
-        // padding: 16,
         paddingTop: 24,
         paddingHorizontal: 16,
-        // backgroundColor: '#fff'
         maxWidth: 540,
         width: '100%',
         maxHeight: metrix.HEIGHT,
@@ -66,7 +61,5 @@ const styles = StyleSheet.create({
     },
     notificationsWrapper: {
         width: '100%',
-        // height: 'auto',
-        // flexGrow: 3,
     }
 })

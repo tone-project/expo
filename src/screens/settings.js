@@ -1,15 +1,32 @@
-import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Button, Image, CancelButton } from 'react-native'
-import auth from '../components/firebase';
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/core'
+import { StyleSheet, Text, TouchableOpacity, View, Button, Image, CancelButton, Switch } from 'react-native'
+import userStore from '../store/userStore';
 import { NavigationContainer, StackActions, NavigationContext, } from '@react-navigation/native';
-// import avatar from '../../assets/avatar.png'
 import avatar from '../../assets/avatar.png'
 import CustomView from '../components/customView';
 import Status from '../components/status';
 import { StatusBar } from 'expo-status-bar';
-import Icon from 'react-native-vector-icons/Ionicons'
+import StatusChange from '../components/stutusChange';
+//import Icon from 'react-native-vector-icons/Ionicons'
+import { Icon } from '@iconify/react';
 
-function Settings({navigation}) {
+
+export default function Settings({navigation}) {
+
+    const handleSignOut = () => {
+        userStore.auth
+            .signOut()
+            .then(() => {
+                navigation.replace("Login")
+            })
+            .catch(error => alert(error.message))
+    }
+  const [vibration, setVibration] = useState(false);
+  const toggleVibration = () =>{ 
+setVibration(previousState => !previousState);
+}
+
   return (
     <View style={styles.container1}>
             <CustomView style={styles.status}>
@@ -21,11 +38,11 @@ function Settings({navigation}) {
                 Налаштування
         </Text>
             <View style={styles.ImageWrapper}>
-               <Image source={avatar} style={{ width: '100%', height: '100%', marginTop: '20%'}} />
+               <Image source={avatar} style={{ width: '100%', height: '100%', marginTop: '10%'}} />
             </View>
-            <Text style={{marginTop:'15%' }}>Email: {auth.currentUser?.email}</Text>
+            <Text style={{marginTop:'10%' }}>Email: {userStore.auth.currentUser?.email}</Text>
       <View style={/*[styles.button1, styles.buttonOutline1]*/{top:10}}><TouchableOpacity
-            onPress={() => navigation.navigate('1')}
+    onPress={() => navigation.navigate('settingsProfile')}
                     style={styles.button1}
                 >
 
@@ -34,25 +51,45 @@ function Settings({navigation}) {
 </View>
 <View>
 <TouchableOpacity
-    onPress={() => navigation.navigate('1')}
+    onPress={() => navigation.navigate('Feedback')}
                     style={styles.button3}
                 >
                 <Text style={styles.textStale}>Зворотній зв'язок</Text>
 </TouchableOpacity>
-<View style={{/*position: 'absolute', right: '410%', top: '20%'*/right: '65%', top:'-25%'}}><Icon name={'ios-chatbubbles-outline'} size={40} color="black"/>
+<View style={{/*position: 'absolute', right: '410%', top: '20%'*/right: '65%', top:'-17%'}}><Icon /*name={'ep:chat-square'}*/icon="ep:chat-square"  size={2} color="black"style={{ fontSize: '40px' }}/>
+</View>
+<View>
+<View
+                        style={styles.ViewStale}
+                    />
+<View style={{/*position: 'absolute', right: '410%', top: '10%'*/right: '65%', top:'10%'}}><Icon /*name={'lucide:vibrate'}*/icon="lucide:vibrate"  size={2} color="black"style={{ fontSize: '40px' }}/>
 </View>
 </View>
-            
+</View>
+<View>
+<View style={{marginLeft: '-250%', marginTop: '-75%'}}><Text style={styles.textStalee}>Вібрація</Text></View>
+          
+<View style={styles.bottons}>
+      <Switch
+        trackColor={{ false: "#767577", true: "black" }}
+        thumbColor={vibration ? "#f5dd4b" : "#f4f3f4"}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleVibration}
+        value={vibration}
+      />
+</View>
+</View>
 <TouchableOpacity
-                onPress={() => navigation.navigate('ВИЙТИ З ПРОФІЛЮ')}
+                //onPress={() => navigation.navigate('ВИЙТИ З ПРОФІЛЮ')}
+                onPress={handleSignOut}
                 style={styles.button}
             >
-                <Text style={/*styles.buttonText*/{color: '#e94d4d',}}>ВИЙТИ З ПРОФІЛЮ</Text>
+                <Text style={/*styles.buttonText*/{color: '#e94d4d', marginTop:'-50%'}}>ВИЙТИ З ПРОФІЛЮ</Text>
             </TouchableOpacity>
-    </View>
+</View>
   );
 }
-export default Settings;
+//export default Settings;
 
 
 
@@ -78,17 +115,24 @@ const styles = StyleSheet.create({
         marginRight: '41.5%',
     },
     ImageWrapper: {
-        width: 112, 
-        height: 112,
+        width: 140, 
+        height: 140,
     },
+bottons: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: '-35%',
+    marginLeft: '430%',
+    //position: 'absolute',
+  },
     button: {
         /*backgroundColor: '#0782F9',
         //heidth: '60%',*/
         //padding: '10%',
         //borderRadius: 10,
         //alignItems: 'left',
-        marginTop: '28%',
-        //position: 'absolute',
+        marginTop: '30%',
     },
 button3: {
         /*backgroundColor: '#0782F9',
@@ -100,7 +144,7 @@ button3: {
         //position: 'absolute',
         //heidth: 800,
     //textAlign: 'center'
-        right: '20%',
+        right: '28%',
     },
     buttonText: {
         color: '#e94d4d',
@@ -123,14 +167,30 @@ button3: {
         /*//alignItems: 'left',
         //position: 'absolute',
         //top: '100%', left: '110%',
-        top: '70%', left: '100%',
-        fontSize: 20,
+        top: '60%', left: '70%',
+        fontSize: 21,
         fontWeight: "300",
         //fontFamily: "Arial",
         //backgroundColor: '#2AB080',*/
-        alignItems: 'center',
+        //alignItems: 'center',
         //position: 'absolute',
         //top: '80%', left: '20%',
+        fontSize: 20,
+        fontWeight: "300",
+        //fontFamily: "Arial",
+    },
+textStalee: {
+        /*//alignItems: 'left',
+        //position: 'absolute',
+        //top: '100%', left: '110%',
+        marginTop: '100%', left: '70%',
+        fontSize: 21,
+        fontWeight: "300",
+        //fontFamily: "Arial",
+        //backgroundColor: '#2AB080',*/
+        //alignItems: 'center',
+        position: 'absolute',
+        top: '60%', left: '0%',
         fontSize: 20,
         fontWeight: "300",
         //fontFamily: "Arial",
@@ -161,11 +221,12 @@ textStale1: {
         left: 322, bottom: 2
     },
     ViewStale: {
-        marginTop: 80,
+        marginTop: '-6%',
         borderBottomColor: '#e9e9e9',
         borderBottomWidth: 1.1,
-        width: '220%',
-        left: '1%'
+        width: '236%',
+        left: '-68%',
+        position: 'absolute',
     },
 container: {
         flex: 1,
@@ -239,6 +300,7 @@ container: {
     },
     statusbar:{
         padding: 12,
+        flexDirection: "row",
         marginTop: 24,
         width: 328,
         height: 48,
@@ -261,5 +323,6 @@ container: {
         height: 'auto',
         justifyContent: 'center',
         alignItems: 'center',
+        flexDirection: "row",
     }
 })

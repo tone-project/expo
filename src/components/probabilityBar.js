@@ -58,11 +58,9 @@ export default ProbabilityBar;
 const styles = StyleSheet.create({
     probabilityBar: {   
         width: '100%',
-        // width: metrix.x,
         alignItems: 'center',
         height: 188,
         borderRadius: 12,
-        // padding: 16,
         paddingVertical: 16,
         paddingHorizontal: metrix.WIDTH > 360 ? (16 * 1.3 * (metrix.WIDTH)/360) : 16,
     },
@@ -86,14 +84,10 @@ const styles = StyleSheet.create({
     bottons: {
         flex: 1,
         width: '100%',
-        // maxWidth: 298,
-        // justifyContent: 'space-evenly',
         height: 66,
         marginTop: 23,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        // paddingHorizontal: 16,
-        // backgroundColor: 'yellow'
     },
     TouchableHighlight: {
         borderColor: 'rgba(46, 198, 143, 0.5)',

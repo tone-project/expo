@@ -4,8 +4,8 @@
       [
         "expo-notifications",
         {
-          "icon": "./local/assets/info.png",
-          "color": "#ffffff",
+          "icon": "./assets/icon.png",
+          "color": "#000000",
           "sounds": [
             "./local/assets/",
             "./local/assets/notification .wav"

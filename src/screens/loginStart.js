@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, View, Text, Image} from 'react-native'
 
 import Logo from '../svg/logo';
@@ -6,7 +6,6 @@ import Logo from '../svg/logo';
 import CustomButton from '../components/customButton';
 
 const LoginStart = ({navigation}) => {
-    console.log('asda')
     return(
         <View style={styles.container}>
             <View style={styles.logoWrapper}>

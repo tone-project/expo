@@ -6,12 +6,16 @@ import { StyleSheet, Text, Button, TouchableOpacity, View, HStack, Image, width,
 import { SafeAreaView } from 'react-native-safe-area-context';
 import /*Ionicons*/Icon from 'react-native-vector-icons/Ionicons'
 //import { Icon } from 'react-native-elements'
+import StatusDevice from '../components/statusDevice';
+import StatusDevicesignal from '../components/statusDevicesignal';
+import StatusDeviceBattary from '../components/statusDeviceBattary';
+import {observer} from 'mobx-react'
+import CustomView from '../components/customView';
+
 
 import deviceImange from '../../assets/device3.png'
 
 const Device = () => {
-    /*var device = 'CONNECT';
-if(device != 'CONNECT'){*/
     return (
         <View style={{
             width: '100%', height: '100%', backgroundColor: 'white'
@@ -22,11 +26,11 @@ if(device != 'CONNECT'){*/
                 </Text>
             </View>
             <View style={{
-                width: 300, height: 300, alignItems: 'center'
+                width: 320, height: 320, alignItems: 'center'
             }}>
-                <Image source={deviceImange} style={{ width: '100%', height: '100%', aspectRatio: 1, marginLeft: 60, marginTop: 20, }} />
+                <Image source={deviceImange} style={{ width: '100%', height: '100%', aspectRatio: 1, marginLeft: 60, marginTop: 10, }} />
             </View>
-            <View style={{left: '3%'}}>
+            <View style={{left: '3%', marginTop: '2%'}}>
                 <View style={styles.ViewStale1}>
                     <Icon name="ios-barcode-outline" size={40} color="black" />
                     <Text style={styles.textStale}>
@@ -41,12 +45,14 @@ if(device != 'CONNECT'){*/
                     <Text style={styles.textStale}>
                         Статус
                     </Text>
+<View style={{right: '19%', position: 'absolute'}}>
+<CustomView style={styles.status}>
+                <StatusDevice/>
+            </CustomView>
+</View>
                     <View
                         style={styles.ViewStale}
                     />
-                    <View style={styles.Iconstyle1}>
-                        <Text style={{ color: "red" }}>Не підключено</Text>
-                    </View>
                 </View>
                 <View>
 
@@ -54,12 +60,14 @@ if(device != 'CONNECT'){*/
                     <Text style={styles.textStale}>
                         Рівень сигналу
                     </Text>
+<View style={{right: '12%', position: 'absolute'}}>
+<CustomView style={styles.statu}>
+                <StatusDevicesignal/>
+            </CustomView>
+</View>
                     <View
                         style={styles.ViewStale}
                     />
-                    <View style={styles.Iconstyle}>
-                        <Icon name="ios-wifi-outline" size={40} color="red" />
-                    </View>
                 </View>
                 <View>
 
@@ -67,9 +75,11 @@ if(device != 'CONNECT'){*/
                     <Text style={styles.textStale}>
                         Батарея
                     </Text>
-                    <View style={styles.Iconstyle2}>
-                        <Icon name="ios-battery-charging" size={40} color="red" />
-                    </View>
+<View style={{right: '3.4%', position: 'absolute'}}>
+                    <CustomView style={styles.status}>
+                <StatusDeviceBattary/>
+            </CustomView>
+</View>
                 </View>
             </View >
         </View >
@@ -136,4 +146,8 @@ ViewStale1: {
         position: 'absolute',
         left: 322, bottom: 2
     },
+    statu: {
+fontSize: 12,
+        //margiRight: '-400%'
+},
 })
