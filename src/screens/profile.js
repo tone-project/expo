@@ -20,13 +20,11 @@ const Device = () => {
         <View style={{
             width: '100%', height: '100%', backgroundColor: 'white'
         }}>
-<View>
             <View>
                 <Text style={styles.baseText}>
                     Пристрій
                 </Text>
             </View>
-<View>
             <View style={{
                 width: 320, height: 320, alignItems: 'center'
             }}>
@@ -84,8 +82,6 @@ const Device = () => {
 </View>
                 </View>
             </View >
-          </View >
-         </View >
         </View >
     );
 }

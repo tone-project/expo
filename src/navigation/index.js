@@ -6,7 +6,8 @@ import LoginNav from './loginNav';
 import OnboardingNav from './onboardingNav';
 import NewSoundNav from './newSoundNav';
 import NavBar from './navBar';
-import Notifications from '../screens/notifications'
+import settingsNav from './settingsNav';
+import Notifications from '../screens/notifications';
 
 const Stack = createStackNavigator();
 
@@ -26,7 +27,8 @@ const Navigator = () => {
       >
         {/* <Stack.Screen name='LoginNav' component={LoginNav} options={{headerShown: false }}/> */}
         {/* <Stack.Screen name='OnboardingNav' component={OnboardingNav} options={{headerShown: false }}/> */}
-        <Stack.Screen name='NavBar' component={NavBar} options={{headerShown: false }}/>
+         <Stack.Screen name='NavBar' component={NavBar} options={{headerShown: false }}/> 
+        {/* <Stack.Screen name='settingsNav' component={settingsNav} options={{headerShown: false }}/> */}
         {/* <Stack.Screen name='NewSoundNav' component={NewSoundNav} options={{headerShown: false }}/> */}
         {/* <Stack.Screen name='Notifications' component={Notifications} options={{headerShown: false }}/> */}
 

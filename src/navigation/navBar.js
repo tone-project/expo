@@ -6,7 +6,8 @@ import Notifications from '../screens/notifications'
 import SoundsPage from '../screens/soundsPage'
 import RecordingPage from '../screens/newSoundRecording'
 import Device from '../screens/Device'
-import Settings from '../screens/settings'
+//import Settings from '../screens/settings'
+import Settings from './settingsNav';
 import newSoundIcon from '../../assets/newSoundIcon.png'
 import newSoundNab from './newSoundNav'
 

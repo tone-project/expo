@@ -1,10 +1,11 @@
 import { useNavigation } from '@react-navigation/core'
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Button, Image, CancelButton } from 'react-native'
-import auth from '../components/firebase';
+//import userStore from '../store/userStatus';
 import { NavigationContainer, StackActions, NavigationContext, } from '@react-navigation/native';
 import avatar from '../../assets/avatar.png'
-import pr from '../../assets/pr.png'
+import { StatusBar } from 'expo-status-bar';
+import StatusChange from '../components/stutusChange';
 //import { NavigationContainer } from '@react-navigation/native';
 // import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -13,12 +14,12 @@ import pr from '../../assets/pr.png'
 
 const SettignsProfile = () => {
     return (
-        <View style={styles.container}/*style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}*/>
-            <View style={{
-                        width: '30%', height: '30%',
-                }}><Image source={pr} style={{ width: '100%', height: '100%', aspectRatio: 0.9, right: 18, marginTop: 35,}} />
+        <View style={styles.container} /*style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}*/>
+            <View style={styles.ImageWrapper}>
+               <Image source={avatar} style={{ width: '100%', height: '100%', marginTop: '10%'}} />
             </View>
-            <Button title="Go back" onPress={() => navigation.goBack()} />
+            <Text style={{marginTop:'10%' }}>Email: {/*userStore.auth.currentUser?.email*/}</Text>
+            <Text style={{marginTop:'5%' }}>Name: {/*userStore.auth.currentUser?.name + secondName*/}</Text>
         </View>
     );
 }
@@ -32,8 +33,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'white',
         width: '100%', 
-        height: '100%',
-        
+        height: '100%',   
     },
     button: {
         /*backgroundColor: '#0782F9',
@@ -52,11 +52,28 @@ const styles = StyleSheet.create({
         height: 20
 
     },
-baseText: {
+    baseText: {
         //fontFamily: "Cochin",
         fontSize: 27,
         fontWeight: "700",
         marginTop: 30,
         marginRight: '41.5%',
+    },
+    status: {
+        marginTop: 24,
+    },
+    statusbar:{
+        padding: 12,
+        flexDirection: "row",
+        marginTop: 24,
+        width: 328,
+        height: 48,
+        borderWidth: 1,
+        borderColor: '#E8E8E8',
+        borderRadius: 8,
+    },
+    ImageWrapper: {
+        width: 140, 
+        height: 140,
     },
 })
