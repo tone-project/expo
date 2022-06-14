@@ -98,25 +98,37 @@ const Getnotifications = () => {
     //       Notifications.removeNotificationSubscription(responseListener.current);
     //     };
     //   }, []);
-  
 
-
-
+    useEffect(() => notificationsStore.getNotificationsInTenSec(), []) 
 
     return(
         <View style={styles.wrapper}>
-            <TouchableOpacity 
+            {/* <TouchableOpacity 
                 style={styles.button}
                 onPress={() => {
                     // notificationsStore.getNotifications();
                     // notificationsStore.clearNotificationsInTenSec();
-                    notificationsStore.getFirestoreNotifications();
+                    // notificationsStore.getFirestoreNotifications();
+                    // notificationsStore.getNotificationsInTenSec();
+                    // notificationsStore.getNotifications();
+                    // notificationsStore.setNotifications([
+                    //     {
+                    //         description: 'sad',
+                    //         icon: 'sad',
+                    //         date: 'sad',
+                    //     },
+                    //     {
+                    //         description: 'sad',
+                    //         icon: 'sad',
+                    //         date: 'sad',
+                    //     },
+                    // ]);
                     // sendMesaage(expoPushToken);
                 }
             }
             >
             <Text style={styles.buttonText}> get </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         </View>
     )
 }

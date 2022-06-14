@@ -6,6 +6,7 @@ class UserState{
     constructor(){
         extendObservable(this,{
             auth: auth(),
+            token: '',
             isOnline: false,
             register: (email, password) => {
                 return createUserWithEmailAndPassword(this.auth, email, password);

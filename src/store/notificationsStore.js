@@ -3,8 +3,9 @@ import {dataBase}  from '../components/firebase';
 import { collection, doc, getDoc, addDoc ,getDocs, getFirestore } from "firebase/firestore"; 
 // import moment from 'moment';
 
-const URL = 'https://559a87e3-2a86-4dd9-8655-2a8885f289e3.mock.pstmn.io/dddd'
-
+// const URL = 'https://559a87e3-2a86-4dd9-8655-2a8885f289e3.mock.pstmn.io/dddd';
+const URL = 'http://34.116.238.165:5000/';
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY1NTIwMzU3NywianRpIjoiMjE5ODIyZjEtMGYyNy00MTg3LWEwMDktZDBmNDdhNzUyMzhmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImJkZjI2Mzk5LTdkZDMtNGQ3OC1hNjI4LTliYzE2OWUwYmEzMiIsIm5iZiI6MTY1NTIwMzU3NywiZXhwIjoxNjU1MjA0NDc3fQ._JWIOkJ_sJa5LKKY3SuUg0SL2g3k8y4gl3TgUshZgtA'
 
 
 class NotificationsModel{
@@ -24,29 +25,32 @@ class NotificationsModel{
             clearNotificationsInTenSec: () => setTimeout(async() => {
                 await this.clearNotifications();
             }, 10000),
+            getNotificationsInTenSec: () => setInterval(async() => {
+                console.log('getNotifications')
+                await this.getNotifications();
+            }, 5000),
             setNotifications: (payload) => {
-                this.notifications.push(payload)
+                console.log('setNotifications', payload)
+                payload.map(el => this.notifications.push(el))
+                // this.notifications = [...this.notifications, payload]
             },
             getNotifications: () => {
-                fetch(URL)
+                fetch(URL + 'get_notifications',{
+                    headers: {'Authorization': 'Bearer ' + token}
+                })
                     .then(responce => {
-                        return responce.json()
+                        console.log('responce: ', responce);
+                        return responce.json();
                     })
-                    .then(payload => this.setNotifications(payload))
-                    .catch(error => console.log(error))
+                    .then(payload => {
+                        console.log('payload: ', payload);
+                        return this.setNotifications(payload.message)
+                    })
+                    .catch(error => console.log('error: ', error))
             },
             getFirestoreNotifications: async() => {
                 const db = dataBase();
-                // try {
-                //     const docRef = await addDoc(collection(db, "notifications"), {
-                //         description: "bird",
-                //         icon: "bird",
-                //         date: "14:16" 
-                //     });
-                //     console.log("Document written with ID: ", docRef.id);
-                // } catch (e) {
-                //     console.error("Error adding document: ", e);
-                // }
+                
                 try {
                 const querySnapshot = await getDocs(collection(db, "notifications"));
                 console.log("querySnapshot: ", querySnapshot)
@@ -58,13 +62,6 @@ class NotificationsModel{
                 } catch (e) {
                 console.error("Error adding document: ", e);
                 }
-                // console.log('asdasda: ', docSnap)
-                // if (docSnap.exists()) {
-                // console.log("Document data:", docSnap.data());
-                // } else {
-                // doc.data() will be undefined in this case
-                // console.log("No such document!");
-                
             }
         });
     }
