@@ -28,8 +28,8 @@ const Navigator = () => {
             headerTitleAlign: 'center',
           }}
         >
-            {/* <Stack.Screen name='LoginNav' component={LoginNav} options={{headerShown: false }}/> */}
-            {/* <Stack.Screen name='OnboardingNav' component={OnboardingNav} options={{headerShown: false }}/> */}
+            <Stack.Screen name='LoginNav' component={LoginNav} options={{headerShown: false }}/>
+            <Stack.Screen name='OnboardingNav' component={OnboardingNav} options={{headerShown: false }}/>
             <Stack.Screen name='NavBar' component={NavBar} options={{headerShown: false }}/>
             <Stack.Screen name='NewSoundNav' component={NewSoundNav} options={{headerShown: false }}/>
             <Stack.Screen name='Notifications' component={Notifications} options={{headerShown: false }}/>
