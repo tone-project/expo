@@ -1,21 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import AppLoading from 'expo-app-loading';
+import { useFonts, Inter_700Bold, Inter_600SemiBold, Inter_500Medium, Inter_400Regular } from '@expo-google-fonts/inter';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import deviceStatus from './src/store/deviceStatus';
+
+import Navigator from './src/navigation';
+
+import { Provider } from "mobx-react";
+import store from './src/store';
+
+
+const App = () => {
+  const [fontsLoaded] = useFonts({
+    Inter_700Bold,
+    Inter_600SemiBold,
+    Inter_500Medium,
+    Inter_400Regular,
+  });
+
+
+  if(!fontsLoaded){
+    return (
+      <Provider store={store}>
+        <AppLoading />
+      </Provider>
+    )
+  } else{
+    return (
+      <Navigator/>
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
